@@ -1,4 +1,4 @@
-﻿@model WebApp.Models.Dtos.ConsultarCertameDto
+﻿@model WebApp.Models.Dtos.AtaRegistroPrecoDto
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -7,7 +7,7 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 
-    <form asp-controller="CG" asp-action="VisualizarCertameAPI" method="post" enctype="multipart/form-data">
+    <form asp-controller="ARP" asp-action="InserirAtaRegistroPreco" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label asp-for="anoCompra"></label>
             <input asp-for="anoCompra" class="form-control" />

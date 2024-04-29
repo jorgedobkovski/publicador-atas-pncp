@@ -1,7 +1,15 @@
+using PublicadorARP.Services;
+using PublicadorARP.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration
+    .AddEnvironmentVariables();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton(builder.Configuration);
+builder.Services.AddScoped<IPNCPService, PNCPService>();
 
 var app = builder.Build();
 

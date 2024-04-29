@@ -3,7 +3,7 @@ using System;
 
 namespace WebApp.Models.Dtos
 {
-    public class ConsultarCertameDto
+    public class AtaRegistroPrecoDto
     {
         public string anoCompra { get; set; }
         public string sequencialCompra { get; set; }
