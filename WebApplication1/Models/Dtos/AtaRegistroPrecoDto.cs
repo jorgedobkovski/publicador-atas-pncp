@@ -10,9 +10,9 @@ namespace WebApp.Models.Dtos
         public string anoCompra { get; set; }
         [Display(Name = "Sequencial da contratação")]
         public string sequencialCompra { get; set; }
-        [Display(Name = "Numero da ata de registro de preço")]
+        [Display(Name = "Numero da ata")]
         public string numeroAta { get; set; }
-        [Display(Name = "Ano da ata de registro de preço")]
+        [Display(Name = "Ano da ata")]
         public string anoAta { get; set; }
         [Display(Name = "Data da assinatura")]
         public string dataAssinatura { get; set; }

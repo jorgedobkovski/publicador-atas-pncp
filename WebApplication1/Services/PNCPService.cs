@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PublicadorARP.Services.Interfaces;
+﻿using PublicadorARP.Services.Interfaces;
 using RestSharp;
-using System.Text;
 using WebApp.Models.Dtos;
 
 namespace PublicadorARP.Services
@@ -117,7 +115,6 @@ namespace PublicadorARP.Services
             var restClient = new RestClient(uploadUrl);
 
             var arquivoContent = ConvertIFormFileToByteArray(file);
-            var arquivo = new ByteArrayContent(arquivoContent);
 
             var request = new RestRequest(resource: "", method: Method.Post);
             request.AddHeader("Authorization", $"Bearer {token}");
