@@ -16,3 +16,29 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Estilização para centralizar as opções do menu */
+.navbar-collapse {
+    justify-content: center;
+}
+
+/* Estilização para a cor de fundo */
+.navbar {
+    background-color: #007bff !important;
+}
+
+/* Estilização para a cor do texto das opções do menu */
+.navbar-nav .nav-link {
+    color: #ffffff; /* Cor branca para os links */
+}
+
+/* Estilização para a cor do texto das opções do menu */
+.navbar-nav .nav-link {
+    color: #ffffff; /* Cor branca para os links */
+}
+
+
+.logo-footer {
+    height: 90px;
+    width: 225px;
+}

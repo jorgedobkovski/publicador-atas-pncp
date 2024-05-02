@@ -17,7 +17,7 @@ using PublicadorARP.Services.Interfaces;
 
 namespace WebApp.Controllers
 {
-    public class ARPController : ControllerBase
+    public class ARPController : Controller
     {
         private readonly IPNCPService _pncpService;
 
@@ -26,12 +26,22 @@ namespace WebApp.Controllers
             _pncpService = pncpService;
         }
 
+        public IActionResult InserirAtaRegistroPreco()
+        {
+            return View();
+        }
+
+        public IActionResult AnexarArquivo()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public async Task<IActionResult> InserirAtaRegistroPreco(AtaRegistroPrecoDto dto)
+        public async Task<IActionResult> InserirAtaRegistroPreco(InserirAtaRegistroPrecoDto dto)
         {
             if (!ModelState.IsValid)
             {
-                return new ViewResult();
+                return View();
             }
 
             await _pncpService.InserirAtaRegistroPreco(dto);

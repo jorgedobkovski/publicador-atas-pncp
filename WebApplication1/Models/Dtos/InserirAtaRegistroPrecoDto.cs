@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebApp.Models.Dtos
 {
-    public class AtaRegistroPrecoDto
+    public class InserirAtaRegistroPrecoDto
     {
         [Display(Name = "Ano da contratação")]
         public string anoCompra { get; set; }

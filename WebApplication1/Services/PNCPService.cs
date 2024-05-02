@@ -14,7 +14,7 @@ namespace PublicadorARP.Services
             _configuration = configuration;
         }
 
-        public async Task<RestResponse> InserirAtaRegistroPreco(AtaRegistroPrecoDto dto)
+        public async Task<RestResponse> InserirAtaRegistroPreco(InserirAtaRegistroPrecoDto dto)
         {
             try
             {

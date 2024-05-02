@@ -6,6 +6,6 @@ namespace PublicadorARP.Services.Interfaces
 {
     public interface IPNCPService
     {
-        Task<RestResponse> InserirAtaRegistroPreco(AtaRegistroPrecoDto dto);
+        Task<RestResponse> InserirAtaRegistroPreco(InserirAtaRegistroPrecoDto dto);
     }
 }
