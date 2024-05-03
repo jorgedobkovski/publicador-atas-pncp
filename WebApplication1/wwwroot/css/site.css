@@ -24,7 +24,7 @@ body {
 
 /* Estilização para a cor de fundo */
 .navbar {
-    background-color: #007bff !important;
+    background-color: #21325e !important;
 }
 
 /* Estilização para a cor do texto das opções do menu */
@@ -42,3 +42,16 @@ body {
     height: 90px;
     width: 225px;
 }
+
+footer {
+    color: #fff;
+    padding: 2px 0 10px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #21325e;
+}
+
+    footer .palacio {
+        width: 150px
+    }

@@ -1,5 +1,8 @@
-﻿using PublicadorARP.Services.Interfaces;
+﻿using PublicadorARP.Models.Dtos;
+using PublicadorARP.Models.ViewModels;
+using PublicadorARP.Services.Interfaces;
 using RestSharp;
+using System.Net;
 using WebApp.Models.Dtos;
 
 namespace PublicadorARP.Services
@@ -12,6 +15,110 @@ namespace PublicadorARP.Services
         {
             _client = new RestClient("https://treina.pncp.gov.br/api/pncp/v1/");
             _configuration = configuration;
+        }
+
+        public async Task<ContratacaoViewModel?> ConsultarContratacao(ConsultarContratacaoDto dto)
+        {
+            try
+            {
+                var request = new RestRequest(resource: $"orgaos/04801221000110/compras/{dto.anoCompra}/{dto.sequencialCompra}", method: Method.Get);
+                var response = await _client.ExecuteAsync<ContratacaoViewModel>(request);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var ataListViewModel = response.Data;
+                    return ataListViewModel;
+                }
+                else
+                {
+                    Console.WriteLine($"Erro na requisição: {response.StatusCode}");
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro na requisição: {ex.Message}");
+                return null;
+            }
+
+        }
+
+        public async Task<IList<AtaRegistroPrecoViewModel>?> ConsultarAtasPorContratacao(ConsultarContratacaoDto dto)
+        {
+            try
+            {
+                var request = new RestRequest(resource: $"orgaos/04801221000110/compras/{dto.anoCompra}/{dto.sequencialCompra}/atas", method: Method.Get);
+                var response = await _client.ExecuteAsync<AtaRegistroPrecoListViewModel>(request);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var ataListViewModel = response.Data.Data;
+                    return ataListViewModel;
+                }
+                else
+                {
+                    Console.WriteLine($"Erro na requisição: {response.StatusCode}");
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro na requisição: {ex.Message}");
+                return null;
+            }
+
+        }
+
+        public async Task<ContratacaoViewModel?> ConsultarContratacaoComAtasDeRegistroDePreco(ConsultarContratacaoDto dto)
+        {
+            try
+            {
+                var contratacao = await ConsultarContratacao(dto);
+                var ataListViewModel = await ConsultarAtasPorContratacao(dto);
+
+                if (contratacao != null)
+                {
+                    contratacao.AtasRegistroPrecoList = ataListViewModel;
+                    return contratacao;
+                }
+                else
+                {
+                    Console.WriteLine($"Erro");
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro: {ex.Message}");
+                return null;
+            }
+
+        }
+
+        public async Task<AtaRegistroPrecoViewModel?> ConsultarAtaRegistroPreco(ConsultarAtaRegistroPrecoDto dto)
+        {
+            try
+            {
+                var request = new RestRequest(resource: $"orgaos/04801221000110/compras/{dto.anoCompra}/{dto.sequencialCompra}/atas/{dto.sequencialAta}", method: Method.Get);
+                var response = await _client.ExecuteAsync<AtaRegistroPrecoViewModel>(request);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var ataViewModel = response.Data;
+                    return ataViewModel;
+                }
+                else
+                {
+                    Console.WriteLine($"Erro na requisição: {response.StatusCode}");
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro na requisição: {ex.Message}");
+                return null;
+            }
+
         }
 
         public async Task<RestResponse> InserirAtaRegistroPreco(InserirAtaRegistroPrecoDto dto)

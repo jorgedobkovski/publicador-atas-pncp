@@ -14,6 +14,8 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using RestSharp;
 using PublicadorARP.Services.Interfaces;
+using PublicadorARP.Models.Dtos;
+using PublicadorARP.Models.ViewModels;
 
 namespace WebApp.Controllers
 {
@@ -47,7 +49,37 @@ namespace WebApp.Controllers
             await _pncpService.InserirAtaRegistroPreco(dto);
 
             return Ok();    
-        }       
-                
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ConsultarAtasPorContratacao(ConsultarContratacaoDto dto)
+        {
+            var contratacaoViewModel = await _pncpService.ConsultarContratacaoComAtasDeRegistroDePreco(dto);
+
+            if (contratacaoViewModel != null)
+            {
+                return View("ResultadoConsultaAtasPorContratacao", contratacaoViewModel);
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GerenciarAtaRegistroPreco(string sequencialAta, string sequencialCompra, string anoCompra)
+        {
+            var consultaAtaDto = new ConsultarAtaRegistroPrecoDto()
+            {
+                anoCompra = anoCompra,
+                sequencialAta = sequencialAta,
+                sequencialCompra = sequencialCompra
+            };
+
+            var ataRegistroPrecoViewModel = await _pncpService.ConsultarAtaRegistroPreco(consultaAtaDto);
+
+            return View("GerenciarAtaRegistroPreco", ataRegistroPrecoViewModel);
+        }
+
     }
 }
