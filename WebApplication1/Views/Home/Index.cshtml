@@ -10,6 +10,18 @@
                 <h1 class="display-4">Inserir Ata de Registro de Preço</h1>
                 <p>Preencha as informações</p>
             </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div>
+                    Usuário logado
+                </div>
+            }
+            else
+            {
+                <div>
+                    Usuário deslogado
+                    </div>
+            }
 
             <form asp-controller="ARP" asp-action="InserirAtaRegistroPreco" method="post" enctype="multipart/form-data">
                 <div class="row mb-3">

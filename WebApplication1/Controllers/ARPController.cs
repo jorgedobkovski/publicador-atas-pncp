@@ -19,6 +19,7 @@ using PublicadorARP.Models.ViewModels;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class ARPController : Controller
     {
         private readonly IPNCPService _pncpService;
